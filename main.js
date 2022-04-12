@@ -38,7 +38,7 @@ const posts = [
     }
 ]
 
-
+const likedPosts = []
 // console.log(posts);
 
 
@@ -68,6 +68,11 @@ likes.forEach((like) => {
 
         counterElement.innerHTML = Number(counterElement.innerHTML) + 1
 
+        if (!likedPosts.includes(postId)){
+            likedPosts.push(postId)
+        }
+
+        console.log(likedPosts);
         
         /* console.log(this.id);
         const postId = this.id.replace("like-button-", "")
