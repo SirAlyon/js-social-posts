@@ -1,0 +1,31 @@
+*{
+    margin: 0;padding: 0;box-sizing: border-box;
+}
+
+img{
+    max-width: 100%;
+}
+
+body{
+    background-color: rgb(7, 7, 73);
+}
+
+.post{
+    width: 700px;
+}
+
+.user_logo>img{
+    border-radius: 50%;
+}
+
+.user_logo{
+    width: 40px;
+    aspect-ratio: 1 / 1;
+}
+
+.post_image{
+    width: 100%;
+    height: auto;
+    object-fit: cover;
+}
+
