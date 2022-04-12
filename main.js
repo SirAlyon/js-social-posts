@@ -52,7 +52,10 @@ posts.forEach((element, i) =>{
         document.querySelector('.likes').classList.add('liked')
         element.likes += 1
         console.log(posts);
-        generatedPosts(postsElement, element)
+        postsElement.innerHTML = ''
+        posts.forEach((element, i) =>{
+            generatedPosts(postsElement, element)
+        })
     })
     
 })
@@ -68,6 +71,7 @@ posts.forEach((element, i) =>{
 
 
 function generatedPosts(father_element, object_name) {
+    
     father_element.insertAdjacentHTML('beforeend', `
     <div class="post bg-white p-2 mt-5">
     <div class="header d-flex align-items-center">
