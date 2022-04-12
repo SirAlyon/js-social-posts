@@ -15,62 +15,79 @@ const posts = [
         user_img: 'https://picsum.photos/200',
         date: '04/12/2022',
         text: 'Lorem, ipsum dolor sit amet consectetur adipisicing elit. Voluptatem, sapiente veniam vero unde cumque pariatur natus laboriosam, cupiditate nobis voluptate tempora. Atque repellat debitis unde',
-        image: 'https://picsum.photos/200/300',
+        image: 'https://picsum.photos/480/250',
         likes: 80
     },
     {
         id: 2,
         name: 'Alessandro',
-        user_img: 'https://picsum.photos/200/300',
+        user_img: 'https://picsum.photos/200',
         date: '04/12/2022',
         text: 'Lorem, ipsum dolor sit amet consectetur adipisicing elit. Voluptatem, sapiente veniam vero unde cumque pariatur natus laboriosam, cupiditate nobis voluptate tempora. Atque repellat debitis unde',
-        image: 'https://picsum.photos/200/300',
+        image: 'https://picsum.photos/480/250',
         likes: 60
     },
     {
         id: 3,
         name: 'Martina',
-        user_img: 'https://picsum.photos/200/300',
+        user_img: 'https://picsum.photos/200',
         date: '03/15/2022',
         text: 'Lorem, ipsum dolor sit amet consectetur adipisicing elit. Voluptatem, sapiente veniam vero unde cumque pariatur natus laboriosam, cupiditate nobis voluptate tempora. Atque repellat debitis unde',
-        image: 'https://picsum.photos/200/300',
+        image: 'https://picsum.photos/480/250',
         likes: 150
     }
 ]
 
 
 console.log(posts);
-console.log(posts[1].name);
 
 
 
 const postsElement = document.getElementById('posts')
-const postMarkup = `
-<div class="post bg-white p-2 mt-5">
-<div class="header d-flex align-items-center">
-    <div class="user_logo">
-        <img src="${posts[i].user_img}" alt="">
-    </div>
-    <div class="d-flex flex-column mx-3">
-        <span>${posts[i].name}</span>
-        <span>${posts[i].date}</span>
-    </div>
-</div>
-<div class="content mt-2">
-    <p>${posts[i].text}</p>
-    <div class="post_image">
-        <img class="w-100" src="${posts[i].image}" alt="">
-    </div>
-</div>
-<div class="likes d-flex justify-content-around p-3">
-    <span><i class="fa-solid fa-thumbs-up"></i> Mi piace</span>
-    <span>Piace a <strong>${posts[i].likes}</strong> persone</span>
-</div>
-</div>`
 
 posts.forEach((element, i) =>{
-    postsElement.insertAdjacentHTML('beforeend', postMarkup)
+    generatedPosts(postsElement, element)
 
+    const likes = document.querySelector('.likes').addEventListener('click', function(){
+        document.querySelector('.likes').classList.add('liked')
+        element.likes += 1
+        console.log(posts);
+        generatedPosts(postsElement, element)
+    })
+    
 })
 
 
+
+
+
+
+
+
+
+
+
+function generatedPosts(father_element, object_name) {
+    father_element.insertAdjacentHTML('beforeend', `
+    <div class="post bg-white p-2 mt-5">
+    <div class="header d-flex align-items-center">
+        <div class="user_logo">
+            <img src="${object_name.user_img}" alt="">
+        </div>
+        <div class="d-flex flex-column mx-3">
+            <span>${object_name.name}</span>
+            <span>${object_name.date}</span>
+        </div>
+    </div>
+    <div class="content mt-2">
+        <p>${object_name.text}</p>
+        <div class="post_image">
+            <img class="w-100" src="${object_name.image}" alt="">
+        </div>
+    </div>
+    <div class="d-flex justify-content-around p-3">
+        <span class="likes"><i class="fa-solid fa-thumbs-up"></i> Mi piace</span>
+        <span>Piace a <strong>${object_name.likes}</strong> persone</span>
+    </div>
+    </div>`)
+}
