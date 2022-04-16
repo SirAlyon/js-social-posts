@@ -65,9 +65,7 @@ posts.forEach((element) =>{
 const likes = document.querySelectorAll('.likes');
 likes.forEach((like) => {
     like.addEventListener('click', function(){
-        this.classList.add('liked');
-        console.log(this.id);
-
+        console.log(this.className.includes('liked'));
         const postId = this.id.replace("like-button-", "")
         console.log(postId);
 
@@ -77,17 +75,29 @@ likes.forEach((like) => {
         const counterElement = postElement.querySelector(".counter");
         console.log(counterElement);
 
-        counterElement.innerHTML = Number(counterElement.innerHTML) + 1
 
-        if (!likedPosts.includes(postId)){
-            likedPosts.push(postId)
-        }
-
-        console.log(likedPosts);
-        
+        if (!this.className.includes('liked')){
+            this.classList.add('liked');
+            console.log(this, this.id);
+            counterElement.innerHTML = Number(counterElement.innerHTML) + 1
+            if (!likedPosts.includes(postId)){
+                likedPosts.push(postId)
+                console.log(likedPosts);
+            }
+         
+        } else {
+            this.classList.remove('liked')
+            counterElement.innerHTML = Number(counterElement.innerHTML) - 1
+            //Tolgo il postId dall'array dei post piaciuti se viene tolto il like al post
+            if (likedPosts.includes(postId)){
+                const postIdIndex = likedPosts.indexOf(postId)
+                console.log(postIdIndex);
+                likedPosts.splice(postIdIndex, 1)
+                console.log(likedPosts);
+            }
+        } 
     })
 })
-
 
 
 function generatedPosts(father_element, object_name) {
@@ -100,7 +110,7 @@ function generatedPosts(father_element, object_name) {
                 <img src="${object_name.user_img}" alt="">
             </div>
             <div class="d-flex flex-column mx-3">
-                <span>${object_name.name + " " + object_name.surname}</span>
+                <span class="fw-bold">${object_name.name + " " + object_name.surname}</span>
                 <span class="date">${object_name.date}</span>
             </div>
         </div>
