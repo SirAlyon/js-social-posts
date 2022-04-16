@@ -33,4 +33,13 @@ body{
     color: blue;
 }
 
-.body{}
+.no_image{
+    display: block;
+    height: 250px;
+    width: 100%;
+    background-color: rgba(255, 192, 203, 0.249);
+    font-size: 6rem;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
