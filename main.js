@@ -33,20 +33,20 @@ const posts = [
         id: 3,
         name: 'Martina',
         surname: 'Bianchi',
-        user_img: 'https://picsum.photos/200',
+        user_img: '',
         date: '03/15/2022',
         text: 'Lorem, ipsum dolor sit amet consectetur adipisicing elit. Voluptatem, sapiente veniam vero unde cumque pariatur natus laboriosam, cupiditate nobis voluptate tempora. Atque repellat debitis unde',
-        image: '',
+        image: 'https://picsum.photos/480/250',
         likes: 150
     },
     {
         id: 4,
         name: 'Fabio',
         surname: 'Bianchi',
-        user_img: 'https://picsum.photos/200',
+        user_img: '',
         date: '03/15/2022',
         text: 'Lorem, ipsum dolor sit amet consectetur adipisicing elit. Voluptatem, sapiente veniam vero unde cumque pariatur natus laboriosam, cupiditate nobis voluptate tempora. Atque repellat debitis unde',
-        image: '',
+        image: 'https://picsum.photos/480/250',
         likes: 150
     }
 ]
@@ -117,28 +117,26 @@ function generatedPosts(father_element, object_name) {
     </div>`)
 
 
-    if (object_name.image === ""){
-        object_name.image = object_name.name.charAt(0) + object_name.surname.charAt(0)
+    if (object_name.user_img === ""){
+        object_name.user_img = object_name.name.charAt(0) + object_name.surname.charAt(0)
         //console.log(object_name.image);
         const postNumber = document.getElementById("post-" + object_name.id);
         //console.log(postNumber);
-        const postImageElement = postNumber.querySelector('.post_image')
+        const postImageElement = postNumber.querySelector('.user_logo')
         //console.log(postImageElement);
-        postImageElement.innerHTML = `<span class="no_image">${object_name.image}</span>`
+        postImageElement.innerHTML = `<span class="no_image">${object_name.user_img}</span>`
     }
 
     //Cambio il formato della data da americano ad italiano
     const postNumber = document.getElementById("post-" + object_name.id);
     const postDate = postNumber.querySelector('.date').innerHTML
-    console.log(postDate);
+    /* console.log(postDate); */
     const splitDate = postDate.split("/")
     console.log(splitDate, splitDate[1]);
     const finalDate = `${splitDate[1]}/${splitDate[0]}/${splitDate[2]}`
-    console.log(finalDate);
-    console.log(postNumber);
+    /* console.log(finalDate); */
+    /* console.log(postNumber); */
     const postDateElement = postNumber.querySelector('.date')
-    console.log(postDateElement);
+    /* console.log(postDateElement); */
     postDateElement.innerHTML = finalDate
-    
-    
 }
